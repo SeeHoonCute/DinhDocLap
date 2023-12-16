@@ -1,0 +1,24 @@
+.categoryCard {
+    height: rem(160px);
+    position: relative;
+    background-size: 100%;
+    background-position: center;
+    border-radius: var(--mantine-radius-lg);
+    padding: var(--mantine-spacing-xl);
+    overflow: hidden;
+    transition: background-size 300ms ease;
+  
+    @mixin hover {
+      background-size: 105%;
+    }
+  }
+  
+  .categoryLabel {
+    z-index: 2;
+    position: relative;
+  }
+
+.categoryContent{
+  z-index: 2;
+  position: relative;
+}

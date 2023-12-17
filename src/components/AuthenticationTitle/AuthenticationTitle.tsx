@@ -9,9 +9,6 @@ import {
   Container,
   Group,
   Button,
-  UnstyledButton,
-  Overlay,
-  SimpleGrid,
 } from '@mantine/core';
 import classes from './AuthenticationTitle.module.css';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 export function AuthenticationTitle() {
   let navigate = useNavigate();
   const handleHome = () => {
-    let path = `/`;
+    let path = `/admin`;
     navigate(path);
   }
   return (

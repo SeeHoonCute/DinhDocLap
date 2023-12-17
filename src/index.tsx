@@ -9,7 +9,7 @@ import '@mantine/carousel/styles.css';
 
 const theme = createTheme({
   /** Put your mantine theme override here */
-  fontFamily: 'Montserrat, sans-serif',
+  fontFamily: 'Roboto, Montserrat, sans-serif',
   defaultRadius: 'md',
 });
 

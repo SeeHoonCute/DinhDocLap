@@ -11,7 +11,7 @@ export function Frame(){
         <AppShell.Header pt={10}>
             <HeaderMegaMenu/>
         </AppShell.Header>
-        <AppShell.Main m={'100px 100px 0px 100px'}>
+        <AppShell.Main m={'70px 100px 0px 100px'}>
             <Outlet/>
         </AppShell.Main>
             <FooterCentered/>

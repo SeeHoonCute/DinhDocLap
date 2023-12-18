@@ -8,7 +8,7 @@ export function Search(props: TextInputProps) {
     <TextInput
       radius="xl"
       size="md"
-      placeholder="Search questions"
+      placeholder="Geometry Id"
       rightSectionWidth={42}
       leftSection={<IconSearch style={{ width: rem(18), height: rem(18) }} stroke={1.5} />}
       rightSection={

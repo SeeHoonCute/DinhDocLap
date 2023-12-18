@@ -2,6 +2,7 @@ import {
   Group,
   Box,
   Grid,
+  GridCol,
 } from '@mantine/core';
 import classes from './HeaderMegaMenu.module.css';
 import { useNavigate } from "react-router-dom";
@@ -38,31 +39,38 @@ export function HeaderMegaMenu() {
   return (
     <Box pb={18}>
       <header className={classes.header}>
-        <Group h="100%">
-          <Image src={logo} h={40} />
-          <Grid ml={450}>
-            <Group h="100%" gap={0} color='#6D4B40'>
-              <Box>
-                <a href="/" className={classes.link} onClick={handleHome}>
-                  Trang chủ
-                </a>
-              </Box>
-              <Box>
-                <a href="/sightseeing" className={classes.link} onClick={handleSightseeing}>
-                  Tham quan
-                </a>
-              </Box>
-              <Box>
-                <a href="/map3D" className={classes.link} onClick={handleMap3D}>
-                  Bản đồ 3D
-                </a>
-              </Box>
-              <Box>
-                <a href="contactUs" className={classes.link} onClick={handleContactUs}>
-                  Liên hệ
-                </a>
-              </Box>
-            </Group>
+        <Group h="100%" w={'100%'}>
+          <Grid w={'100%'}>
+            <GridCol span={4}>
+              <Image src={logo} h={40} w={80} />
+            </GridCol>
+            <GridCol span={4}>
+              <Group h="100%" gap={30} color='#6D4B40'>
+                <Box>
+                  <a href="/" className={classes.link} onClick={handleHome}>
+                    Trang chủ
+                  </a>
+                </Box>
+                <Box>
+                  <a href="/sightseeing" className={classes.link} onClick={handleSightseeing}>
+                    Tham quan
+                  </a>
+                </Box>
+                <Box>
+                  <a href="/map3D" className={classes.link} onClick={handleMap3D}>
+                    Bản đồ 3D
+                  </a>
+                </Box>
+                <Box>
+                  <a href="contactUs" className={classes.link} onClick={handleContactUs}>
+                    Liên hệ
+                  </a>
+                </Box>
+              </Group>
+            </GridCol>
+            <GridCol span={4}>
+
+            </GridCol>
           </Grid>
           {/* <Group>
             <Button variant="default" onClick={handleLogin} className={classes.headerButton}>Đăng nhập</Button>

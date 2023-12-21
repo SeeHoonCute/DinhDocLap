@@ -83,7 +83,8 @@ const TableModule = () => {
 
     useEffect(() => {
         const fetchGeometries = async () => {
-            const data = await fetch("http://localhost:8080/geometries").then((res) => res.json());
+            console.log(process.env.REACT_APP_BACKEND_URL);
+            const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/geometries`).then((res) => res.json());
             setGeometries(data);
         }
         fetchGeometries();

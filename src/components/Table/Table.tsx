@@ -22,51 +22,42 @@ interface dataTable {
 	offsetz: number;
 	type: string;
 }
+interface Data {
+	id: number;
+	description: string;
+	color: string;
+	locationId: number;
+	sizeId: number;
+	rotateId: number;
+	offsetId: number;
+	type: string;
+}
 
-const createData = (
-	id: number,
-	description: string,
-	color: string,
-	locationx: number,
-	ocationy: number,
-	ocationz: number,
-	wight: number,
-	height: number,
-	depth: number,
-	rotatex: number,
-	rotatey: number,
-	rotatez: number,
-	offsetx: number,
-	offsety: number,
-	offsetz: number,
-	type: string
-): dataTable => {
-	return {
-		id,
-		description,
-		color,
-		locationx,
-		ocationy,
-		ocationz,
-		wight,
-		height,
-		depth,
-		rotatex,
-		rotatey,
-		rotatez,
-		offsetx,
-		offsety,
-		offsetz,
-		type,
-	};
-};
-
-
+const geometries: Data[] = [
+	{ id: 1, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 2, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 3, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 4, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 5, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 6, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 7, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 8, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 9, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 10, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 11, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 12, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 13, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 14, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 15, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 16, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 17, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+	{ id: 18, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
+]
 const TableModule = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const [open, setOpen] = useState(false);
 	const [openEdit, setOpenEdit] = useState(false);
-    const [geometries, setGeometries] = useState([]);
+	// const [geometries, setGeometries] = useState<any[]>([]);
 
 	const handleClickAdd = () => {
 		setOpen(true);
@@ -81,14 +72,14 @@ const TableModule = () => {
 		setOpenEdit(false);
 	};
 
-    useEffect(() => {
-        const fetchGeometries = async () => {
-            console.log(process.env.REACT_APP_BACKEND_URL);
-            const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/geometries`).then((res) => res.json());
-            setGeometries(data);
-        }
-        fetchGeometries();
-    }, [])
+	// useEffect(() => {
+	//     const fetchGeometries = async () => {
+	//         console.log(process.env.REACT_APP_BACKEND_URL);
+	//         const data:any[] = await fetch(`${process.env.REACT_APP_BACKEND_URL}/geometries`).then((res) => res.json());
+	//         setGeometries(data);
+	//     }
+	//     fetchGeometries();
+	// }, [])
 
 	return (
 		<>
@@ -126,7 +117,7 @@ const TableModule = () => {
 								<Button
 									onClick={handleClickAdd}
 									color="green"
-									fullWidth
+									w={150}
 									leftSection={<IconPlus size={20} />}
 								>
 									<Text>Thêm</Text>
@@ -154,12 +145,12 @@ const TableModule = () => {
 									{geometry.offsetId}
 								</Table.Td>
 								<Table.Td align="right">
-									<Button onClick={handleClickEdit}>
+									<Button onClick={handleClickEdit} className={classes.Button}>
 										Sửa
 									</Button>
 								</Table.Td>
 								<Table.Td>
-									<Button color="pink">Xóa</Button>
+									<Button color="pink" className={classes.Button}>Xóa</Button>
 								</Table.Td>
 							</Table.Tr>
 						))}

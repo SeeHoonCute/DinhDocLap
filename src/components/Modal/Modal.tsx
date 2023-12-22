@@ -33,7 +33,7 @@ const ModalModule = ({ onClick }: IModalModule) => {
           <Select
             label="Type"
             placeholder="Chọn type"
-            data={['Box', 'Cylinder', 'Sphere', 'Plane']}
+            data={['Box', 'Cylinder', 'Sphere', 'Plane', 'pyramid']}
             defaultValue="Box"
             clearable
           />

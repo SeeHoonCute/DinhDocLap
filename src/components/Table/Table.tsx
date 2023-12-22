@@ -57,7 +57,7 @@ const TableModule = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const [open, setOpen] = useState(false);
 	const [openEdit, setOpenEdit] = useState(false);
-	// const [geometries, setGeometries] = useState<any[]>([]);
+	const [geometries, setGeometries] = useState<Data[]>([]);
 
 	const handleClickAdd = () => {
 		setOpen(true);
@@ -72,14 +72,18 @@ const TableModule = () => {
 		setOpenEdit(false);
 	};
 
-	// useEffect(() => {
-	//     const fetchGeometries = async () => {
-	//         console.log(process.env.REACT_APP_BACKEND_URL);
-	//         const data:any[] = await fetch(`${process.env.REACT_APP_BACKEND_URL}/geometries`).then((res) => res.json());
-	//         setGeometries(data);
-	//     }
-	//     fetchGeometries();
-	// }, [])
+	useEffect(() => {
+	    const fetchGeometries = async () => {
+            try {
+                const data:Data[] = await fetch(`${process.env.REACT_APP_BACKEND_URL}/geometries`).then((res) => res.json());
+	            setGeometries(data);
+            } catch (error) {
+                console.error(error);
+            }
+	        
+	    }
+	    fetchGeometries();
+	}, [])
 
 	return (
 		<>

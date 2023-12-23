@@ -4,6 +4,9 @@ import { Table, ScrollArea, Button, Text } from "@mantine/core";
 import classes from "./Table.module.css";
 import { IconPlus } from "@tabler/icons-react";
 import ModalModule from "../Modal/Modal";
+
+type Nullable<T> = T | null;
+
 interface Geometry {
 	id: number;
 	description: string;
@@ -220,6 +223,8 @@ const TableModule = () => {
 	const [open, setOpen] = useState(false);
 	const [openEdit, setOpenEdit] = useState(false);
 	const [geometries, setGeometries] = useState<TableData[]>([]);
+	const [selectedGeometry, setSelectedGeometry] =
+		useState<Nullable<TableData>>(null);
 
 	const handleClickAdd = () => {
 		setOpen(true);
@@ -227,7 +232,8 @@ const TableModule = () => {
 	const handleCloseAdd = () => {
 		setOpen(false);
 	};
-	const handleClickEdit = () => {
+	const handleClickEdit = (geometry: TableData) => {
+		setSelectedGeometry(geometry);
 		setOpenEdit(true);
 	};
 	const handleCloseEdit = () => {
@@ -250,8 +256,14 @@ const TableModule = () => {
 
 	return (
 		<>
-			{open && <ModalModule type="add" onClick={handleCloseAdd} />}
-			{openEdit && <ModalModule type="edit" onClick={handleCloseEdit} />}
+			{open && <ModalModule onClick={handleCloseAdd} />}
+			{openEdit && (
+				<ModalModule
+					type={selectedGeometry?.type}
+					id={selectedGeometry?.id}
+					onClick={handleCloseEdit}
+				/>
+			)}
 			<ScrollArea
 				h={600}
 				w={"100%"}
@@ -305,7 +317,9 @@ const TableModule = () => {
 								<Table.Td>{geometry.offsetId}</Table.Td>
 								<Table.Td align="right">
 									<Button
-										onClick={handleClickEdit}
+										onClick={() =>
+											handleClickEdit(geometry)
+										}
 										className={classes.Button}
 									>
 										Sửa

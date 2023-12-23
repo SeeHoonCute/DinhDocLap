@@ -13,19 +13,93 @@ import {
 	GridCol,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { useEffect } from "react";
 interface IModalModule {
-	type: String;
+	type?: String;
+	id?: Number;
 	onClick: () => void;
 }
 
-const ModalModule = ({ type, onClick }: IModalModule) => {
+interface Geometry {
+	id: number;
+	description: string;
+	color: string;
+	locationId: number;
+	location: {
+		x: number;
+		y: number;
+		z: number;
+	};
+	width: number;
+	height: number;
+	depth: number;
+	rotateId: number;
+	rotate: {
+		x: number;
+		y: number;
+		z: number;
+	};
+	offsetId: number;
+	offset: {
+		x: number;
+		y: number;
+		z: number;
+	};
+	type: string;
+}
+
+const ModalModule = ({ type, id, onClick }: IModalModule) => {
 	const form = useForm({
 		initialValues: {
 			color: "",
 			description: "",
 			reason: "",
+			rotate: {
+				x: 0,
+				y: 0,
+				z: 0,
+			},
+			offset: {
+				x: 0,
+				y: 0,
+				z: 0,
+			},
 		},
 	});
+
+	useEffect(() => {
+		if (type && id) {
+			const fetchGeometry = async () => {
+				try {
+					const data: Geometry = await fetch(
+						`${process.env.REACT_APP_BACKEND_URL}/geometries/${type}/${id}`
+					).then((res) => res.json());
+
+					if (!data.rotateId) {
+						data.rotate = {
+							x: 0,
+							y: 0,
+							z: 0,
+						};
+					}
+					if (!data.offsetId) {
+						data.offset = {
+							x: 0,
+							y: 0,
+							z: 0,
+						};
+					}
+
+					form.setValues(data);
+				} catch (error) {
+					console.error(error);
+				}
+			};
+
+			fetchGeometry();
+		}
+	}, []);
+
 	return (
 		<Modal opened={true} onClose={onClick} withCloseButton={false}>
 			<form onSubmit={form.onSubmit(() => {})}>
@@ -36,9 +110,9 @@ const ModalModule = ({ type, onClick }: IModalModule) => {
 					<Select
 						label="Type"
 						placeholder="Chọn type"
-						data={["Box", "Cylinder", "Sphere", "Plane", "pyramid"]}
-						defaultValue="Box"
-                        disabled={type == "edit"}
+						data={["box", "pyramid", "cylinder", "sphere", "plane"]}
+						defaultValue="box"
+						disabled={type !== undefined && id !== undefined}
 					/>
 					<Grid mt={20}>
 						<Text>Location:</Text>
@@ -47,27 +121,27 @@ const ModalModule = ({ type, onClick }: IModalModule) => {
 								<TextInput
 									label="x"
 									placeholder="Tọa độ x"
-									name="color"
+									name="locationX"
 									variant="filled"
-									{...form.getInputProps("x")}
+									{...form.getInputProps("location.x")}
 								/>
 							</GridCol>
 							<GridCol span={4}>
 								<TextInput
 									label="y"
 									placeholder="Tọa độ y                                                                                                                             ````````1```"
-									name="color"
+									name="locationY"
 									variant="filled"
-									{...form.getInputProps("y")}
+									{...form.getInputProps("location.y")}
 								/>
 							</GridCol>
 							<GridCol span={4}>
 								<TextInput
 									label="z"
 									placeholder="Tọa độ z"
-									name="color"
+									name="locationX"
 									variant="filled"
-									{...form.getInputProps("z")}
+									{...form.getInputProps("location.z")}
 								/>
 							</GridCol>
 						</Grid>
@@ -79,27 +153,27 @@ const ModalModule = ({ type, onClick }: IModalModule) => {
 								<TextInput
 									label="width"
 									placeholder="20"
-									name="size"
+									name="width"
 									variant="filled"
-									{...form.getInputProps("x")}
+									{...form.getInputProps("size.width")}
 								/>
 							</GridCol>
 							<GridCol span={4}>
 								<TextInput
 									label="height"
 									placeholder="20                                                                                                                           ````````1```"
-									name="size"
+									name="height"
 									variant="filled"
-									{...form.getInputProps("y")}
+									{...form.getInputProps("size.height")}
 								/>
 							</GridCol>
 							<GridCol span={4}>
 								<TextInput
 									label="depth"
 									placeholder="20"
-									name="size"
+									name="depth"
 									variant="filled"
-									{...form.getInputProps("z")}
+									{...form.getInputProps("size.depth")}
 								/>
 							</GridCol>
 						</Grid>
@@ -111,27 +185,27 @@ const ModalModule = ({ type, onClick }: IModalModule) => {
 								<TextInput
 									label="x"
 									placeholder="Tọa độ x"
-									name="rotate"
+									name="rotateX"
 									variant="filled"
-									{...form.getInputProps("x")}
+									{...form.getInputProps("rotate.x")}
 								/>
 							</GridCol>
 							<GridCol span={4}>
 								<TextInput
 									label="y"
 									placeholder="Tọa độ y                                                                                                                             ````````1```"
-									name="rotate"
+									name="rotateY"
 									variant="filled"
-									{...form.getInputProps("y")}
+									{...form.getInputProps("rotate.y")}
 								/>
 							</GridCol>
 							<GridCol span={4}>
 								<TextInput
 									label="z"
 									placeholder="Tọa độ z"
-									name="rotate"
+									name="rotateZ"
 									variant="filled"
-									{...form.getInputProps("z")}
+									{...form.getInputProps("rotate.z")}
 								/>
 							</GridCol>
 						</Grid>
@@ -143,27 +217,27 @@ const ModalModule = ({ type, onClick }: IModalModule) => {
 								<TextInput
 									label="x"
 									placeholder="Tọa độ x"
-									name="offset"
+									name="offsetX"
 									variant="filled"
-									{...form.getInputProps("x")}
+									{...form.getInputProps("offset.x")}
 								/>
 							</GridCol>
 							<GridCol span={4}>
 								<TextInput
 									label="y"
 									placeholder="Tọa độ y                                                                                                                             ````````1```"
-									name="offset"
+									name="offsetY"
 									variant="filled"
-									{...form.getInputProps("y")}
+									{...form.getInputProps("offset.y")}
 								/>
 							</GridCol>
 							<GridCol span={4}>
 								<TextInput
 									label="z"
 									placeholder="Tọa độ z"
-									name="offset"
+									name="offsetZ"
 									variant="filled"
-									{...form.getInputProps("z")}
+									{...form.getInputProps("offset.z")}
 								/>
 							</GridCol>
 						</Grid>

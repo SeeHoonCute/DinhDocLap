@@ -64,6 +64,7 @@ const ModalModule = ({ type, id, onClick }: IModalModule) => {
 				y: 0,
 				z: 0,
 			},
+            type: type ?? "box",
 		},
 	});
 
@@ -111,8 +112,8 @@ const ModalModule = ({ type, id, onClick }: IModalModule) => {
 						label="Type"
 						placeholder="Chọn type"
 						data={["box", "pyramid", "cylinder", "sphere", "plane"]}
-						defaultValue="box"
 						disabled={type !== undefined && id !== undefined}
+                        {...form.getInputProps("type")}
 					/>
 					<Grid mt={20}>
 						<Text>Location:</Text>

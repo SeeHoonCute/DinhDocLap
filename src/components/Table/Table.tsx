@@ -4,25 +4,25 @@ import { Table, ScrollArea, Button, Text } from "@mantine/core";
 import classes from "./Table.module.css";
 import { IconPlus } from "@tabler/icons-react";
 import ModalModule from "../Modal/Modal";
-interface dataTable {
+interface Geometry {
 	id: number;
 	description: string;
 	color: string;
-	locationx: number;
-	ocationy: number;
-	ocationz: number;
-	wight: number;
+	locationX: number;
+	locationY: number;
+	locationZ: number;
+	width: number;
 	height: number;
 	depth: number;
-	rotatex: number;
-	rotatey: number;
-	rotatez: number;
-	offsetx: number;
-	offsety: number;
-	offsetz: number;
+	rotateX: number;
+	rotateY: number;
+	rotateZ: number;
+	offsetX: number;
+	offsetY: number;
+	offsetZ: number;
 	type: string;
 }
-interface Data {
+interface TableData {
 	id: number;
 	description: string;
 	color: string;
@@ -33,31 +33,193 @@ interface Data {
 	type: string;
 }
 
-const geometries: Data[] = [
-	{ id: 1, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 2, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 3, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 4, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 5, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 6, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 7, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 8, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 9, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 10, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 11, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 12, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 13, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 14, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 15, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 16, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 17, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-	{ id: 18, description: 'Một đường nở hoa', color: 'white', locationId:1, sizeId:1, rotateId:1, offsetId:1, type:'box' },
-]
+const geometries: TableData[] = [
+	{
+		id: 1,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 2,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 3,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 4,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 5,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 6,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 7,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 8,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 9,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 10,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 11,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 12,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 13,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 14,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 15,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 16,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 17,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 18,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+];
 const TableModule = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const [open, setOpen] = useState(false);
 	const [openEdit, setOpenEdit] = useState(false);
-	const [geometries, setGeometries] = useState<Data[]>([]);
+	const [geometries, setGeometries] = useState<TableData[]>([]);
 
 	const handleClickAdd = () => {
 		setOpen(true);
@@ -73,22 +235,23 @@ const TableModule = () => {
 	};
 
 	useEffect(() => {
-	    const fetchGeometries = async () => {
-            try {
-                const data:Data[] = await fetch(`${process.env.REACT_APP_BACKEND_URL}/geometries`).then((res) => res.json());
-	            setGeometries(data);
-            } catch (error) {
-                console.error(error);
-            }
-	        
-	    }
-	    fetchGeometries();
-	}, [])
+		const fetchGeometries = async () => {
+			try {
+				const data: TableData[] = await fetch(
+					`${process.env.REACT_APP_BACKEND_URL}/geometries`
+				).then((res) => res.json());
+				setGeometries(data);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+		fetchGeometries();
+	}, []);
 
 	return (
 		<>
-			{open && <ModalModule onClick={handleCloseAdd} />}
-			{openEdit && <ModalModule onClick={handleCloseEdit} />}
+			{open && <ModalModule type="add" onClick={handleCloseAdd} />}
+			{openEdit && <ModalModule type="edit" onClick={handleCloseEdit} />}
 			<ScrollArea
 				h={600}
 				w={"100%"}
@@ -136,25 +299,25 @@ const TableModule = () => {
 								<Table.Td>{geometry.description}</Table.Td>
 								<Table.Td>{geometry.type}</Table.Td>
 								<Table.Td>{geometry.color}</Table.Td>
-								<Table.Td>
-									{geometry.locationId}
-								</Table.Td>
-								<Table.Td>
-									{geometry.sizeId}
-								</Table.Td>
-								<Table.Td>
-									{geometry.rotateId}
-								</Table.Td>
-								<Table.Td>
-									{geometry.offsetId}
-								</Table.Td>
+								<Table.Td>{geometry.locationId}</Table.Td>
+								<Table.Td>{geometry.sizeId}</Table.Td>
+								<Table.Td>{geometry.rotateId}</Table.Td>
+								<Table.Td>{geometry.offsetId}</Table.Td>
 								<Table.Td align="right">
-									<Button onClick={handleClickEdit} className={classes.Button}>
+									<Button
+										onClick={handleClickEdit}
+										className={classes.Button}
+									>
 										Sửa
 									</Button>
 								</Table.Td>
 								<Table.Td>
-									<Button color="pink" className={classes.Button}>Xóa</Button>
+									<Button
+										color="pink"
+										className={classes.Button}
+									>
+										Xóa
+									</Button>
 								</Table.Td>
 							</Table.Tr>
 						))}

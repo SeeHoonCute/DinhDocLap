@@ -54,6 +54,16 @@ const ModalModule = ({ type, id, onClick }: IModalModule) => {
 			color: "",
 			description: "",
 			reason: "",
+			location: {
+				x: 0,
+				y: 0,
+				z: 0,
+			},
+			size: {
+				width: 0,
+				height: 0,
+				depth: 0,
+			},
 			rotate: {
 				x: 0,
 				y: 0,
@@ -64,9 +74,55 @@ const ModalModule = ({ type, id, onClick }: IModalModule) => {
 				y: 0,
 				z: 0,
 			},
-            type: type ?? "box",
+			type: type ?? "box",
 		},
 	});
+
+	async function handleSubmit(values: any) {
+		try {
+			if (type === undefined || id === undefined) {
+                const response = await fetch(
+                    `${process.env.REACT_APP_BACKEND_URL}/geometries`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(values),
+                    }
+                )
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log("Success:", data);
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                    });
+            } else {
+                const response = await fetch(
+                    `${process.env.REACT_APP_BACKEND_URL}/geometries/${id}`,
+                    {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(values),
+                    }
+                )
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log("Success:", data);
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                    });
+            }
+
+            onClick();
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
 	useEffect(() => {
 		if (type && id) {
@@ -103,7 +159,7 @@ const ModalModule = ({ type, id, onClick }: IModalModule) => {
 
 	return (
 		<Modal opened={true} onClose={onClick} withCloseButton={false}>
-			<form onSubmit={form.onSubmit(() => {})}>
+			<form onSubmit={form.onSubmit(handleSubmit)}>
 				<Container m={20}>
 					<Title order={2} size="h1" fw={900} ta="center">
 						THÔNG TIN
@@ -113,7 +169,7 @@ const ModalModule = ({ type, id, onClick }: IModalModule) => {
 						placeholder="Chọn type"
 						data={["box", "pyramid", "cylinder", "sphere", "plane"]}
 						disabled={type !== undefined && id !== undefined}
-                        {...form.getInputProps("type")}
+						{...form.getInputProps("type")}
 					/>
 					<Grid mt={20}>
 						<Text>Location:</Text>
@@ -275,7 +331,7 @@ const ModalModule = ({ type, id, onClick }: IModalModule) => {
 					/>
 
 					<Group justify="center" mt={10}>
-						<Button type="submit" size="md" onClick={onClick}>
+						<Button type="submit" size="md">
 							Lưu
 						</Button>
 					</Group>

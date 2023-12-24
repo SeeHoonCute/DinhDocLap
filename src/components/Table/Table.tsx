@@ -4,46 +4,27 @@ import { Table, ScrollArea, Button, Text } from "@mantine/core";
 import classes from "./Table.module.css";
 import { IconPlus } from "@tabler/icons-react";
 import ModalModule from "../Modal/Modal";
-// interface dataTable {
-// 	id: number;
-// 	description: string;
-// 	color: string;
-// 	locationx: number;
-// 	ocationy: number;
-// 	ocationz: number;
-// 	wight: number;
-// 	height: number;
-// 	depth: number;
-// 	rotatex: number;
-// 	rotatey: number;
-// 	rotatez: number;
-// 	offsetx: number;
-// 	offsety: number;
-// 	offsetz: number;
-// 	type: string;
-// }
-// interface Data {
 
 type Nullable<T> = T | null;
 
-// interface Geometry {
-// 	id: number;
-// 	description: string;
-// 	color: string;
-// 	locationX: number;
-// 	locationY: number;
-// 	locationZ: number;
-// 	width: number;
-// 	height: number;
-// 	depth: number;
-// 	rotateX: number;
-// 	rotateY: number;
-// 	rotateZ: number;
-// 	offsetX: number;
-// 	offsetY: number;
-// 	offsetZ: number;
-// 	type: string;
-// }
+interface Geometry {
+	id: number;
+	description: string;
+	color: string;
+	locationX: number;
+	locationY: number;
+	locationZ: number;
+	width: number;
+	height: number;
+	depth: number;
+	rotateX: number;
+	rotateY: number;
+	rotateZ: number;
+	offsetX: number;
+	offsetY: number;
+	offsetZ: number;
+	type: string;
+}
 interface TableData {
 	id: number;
 	description: string;
@@ -55,188 +36,188 @@ interface TableData {
 	type: string;
 }
 
-// const geometries: TableData[] = [
-// 	{
-// 		id: 1,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 2,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 3,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 4,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 5,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 6,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 7,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 8,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 9,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 10,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 11,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 12,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 13,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 14,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 15,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 16,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 17,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// 	{
-// 		id: 18,
-// 		description: "Một đường nở hoa",
-// 		color: "white",
-// 		locationId: 1,
-// 		sizeId: 1,
-// 		rotateId: 1,
-// 		offsetId: 1,
-// 		type: "box",
-// 	},
-// ];
+const geometries: TableData[] = [
+	{
+		id: 1,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 2,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 3,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 4,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 5,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 6,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 7,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 8,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 9,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 10,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 11,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 12,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 13,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 14,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 15,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 16,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 17,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+	{
+		id: 18,
+		description: "Một đường nở hoa",
+		color: "white",
+		locationId: 1,
+		sizeId: 1,
+		rotateId: 1,
+		offsetId: 1,
+		type: "box",
+	},
+];
 const TableModule = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const [open, setOpen] = useState(false);
@@ -275,9 +256,7 @@ const TableModule = () => {
 
 	return (
 		<>
-			{/* {open && <ModalModule onClick={handleCloseAdd} onDisabled={false} />}
-			{openEdit && <ModalModule onClick={handleCloseEdit} onDisabled={true}/>} */}
-			{open && <ModalModule onClick={handleCloseAdd}/>}
+			{open && <ModalModule onClick={handleCloseAdd} />}
 			{openEdit && (
 				<ModalModule
 					type={selectedGeometry?.type}

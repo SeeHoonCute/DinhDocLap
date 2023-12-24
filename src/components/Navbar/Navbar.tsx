@@ -8,7 +8,7 @@ import {
 } from '@tabler/icons-react';
 import classes from './Navbar.module.css';
 import { Avatar } from '@mantine/core';
-import avatarImg from'../../assets/images/saint-patrick_9263506.png';
+import avatarImg from '../../assets/images/saint-patrick_9263506.png';
 import { useNavigate } from 'react-router-dom';
 
 interface NavbarLinkProps {
@@ -35,9 +35,12 @@ const mockdata = [
 export default function Navbar() {
     const [active, setActive] = useState(2);
     let navigate = useNavigate();
-    const handleLogin = ()=>{
-        let path ='/login';
+    const handleLogin = () => {
+        let path = '/login';
         navigate(path);
+        localStorage.clear();
+        // console.log('localStorage: ' + localStorage.getItem('admin'));
+        // console.log('Lenght: ' + localStorage.length);
     }
 
     const links = mockdata.map((link, index) => (
@@ -54,7 +57,7 @@ export default function Navbar() {
     return (
         <nav className={classes.navbar}>
             <Center>
-                <Avatar src={avatarImg} radius='xl'/>
+                <Avatar src={avatarImg} radius='xl' />
             </Center>
 
             <div className={classes.navbarMain}>
@@ -65,7 +68,7 @@ export default function Navbar() {
 
             <Stack justify="center" gap={10}>
                 <NavbarLink icon={IconSwitchHorizontal} label="Thay đổi tài khoản" />
-                <NavbarLink icon={IconLogout} label="Đăng xuất" onClick={handleLogin}/>
+                <NavbarLink icon={IconLogout} label="Đăng xuất" onClick={handleLogin} />
             </Stack>
         </nav>
     );

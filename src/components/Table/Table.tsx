@@ -7,24 +7,24 @@ import ModalModule from "../Modal/Modal";
 
 type Nullable<T> = T | null;
 
-interface Geometry {
-	id: number;
-	description: string;
-	color: string;
-	locationX: number;
-	locationY: number;
-	locationZ: number;
-	width: number;
-	height: number;
-	depth: number;
-	rotateX: number;
-	rotateY: number;
-	rotateZ: number;
-	offsetX: number;
-	offsetY: number;
-	offsetZ: number;
-	type: string;
-}
+// interface Geometry {
+// 	id: number;
+// 	description: string;
+// 	color: string;
+// 	locationX: number;
+// 	locationY: number;
+// 	locationZ: number;
+// 	width: number;
+// 	height: number;
+// 	depth: number;
+// 	rotateX: number;
+// 	rotateY: number;
+// 	rotateZ: number;
+// 	offsetX: number;
+// 	offsetY: number;
+// 	offsetZ: number;
+// 	type: string;
+// }
 interface TableData {
 	id: number;
 	description: string;
@@ -222,7 +222,7 @@ const TableModule = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const [open, setOpen] = useState(false);
 	const [openEdit, setOpenEdit] = useState(false);
-	const [geometries, setGeometries] = useState<TableData[]>([]);
+	// const [geometries, setGeometries] = useState<TableData[]>([]);
 	const [selectedGeometry, setSelectedGeometry] =
 		useState<Nullable<TableData>>(null);
 
@@ -240,19 +240,19 @@ const TableModule = () => {
 		setOpenEdit(false);
 	};
 
-	useEffect(() => {
-		const fetchGeometries = async () => {
-			try {
-				const data: TableData[] = await fetch(
-					`${process.env.REACT_APP_BACKEND_URL}/geometries`
-				).then((res) => res.json());
-				setGeometries(data);
-			} catch (error) {
-				console.error(error);
-			}
-		};
-		fetchGeometries();
-	}, []);
+	// useEffect(() => {
+	// 	const fetchGeometries = async () => {
+	// 		try {
+	// 			const data: TableData[] = await fetch(
+	// 				`${process.env.REACT_APP_BACKEND_URL}/geometries`
+	// 			).then((res) => res.json());
+	// 			setGeometries(data);
+	// 		} catch (error) {
+	// 			console.error(error);
+	// 		}
+	// 	};
+	// 	fetchGeometries();
+	// }, []);
 
 	return (
 		<>

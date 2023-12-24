@@ -15,7 +15,7 @@ const FrameAdmin = () => {
     }
     
     useEffect(() => { 
-        if(localStorage.getItem('admin')){
+        if(!localStorage.getItem('admin')){
             return handleLogin();
         }
     }, []);

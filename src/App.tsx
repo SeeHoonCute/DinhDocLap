@@ -2,10 +2,15 @@ import React from 'react';
 import './App.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { routes } from './router';
+import { RecoilRoot } from 'recoil';
+
 
 const router = createBrowserRouter(routes);
 function App() {
-  return <RouterProvider router={router}></RouterProvider>
+  return(
+  <RecoilRoot>
+    <RouterProvider router={router}></RouterProvider>
+    </RecoilRoot>)
 }
 
 export default App;
